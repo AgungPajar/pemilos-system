@@ -43,10 +43,14 @@ body.app-body {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background: radial-gradient(120% 120% at 10% 20%, rgba(106, 165, 255, 0.4) 0%, transparent 55%),
-                radial-gradient(150% 150% at 90% 10%, rgba(255, 140, 105, 0.25) 0%, transparent 60%),
-                radial-gradient(100% 100% at 50% 80%, rgba(110, 220, 190, 0.25) 0%, transparent 60%),
-                #101923;
+    background-image: linear-gradient(140deg, rgba(9, 17, 31, 0.72), rgba(10, 24, 37, 0.58)),
+        radial-gradient(120% 120% at 10% 20%, rgba(106, 165, 255, 0.4) 0%, transparent 55%),
+        radial-gradient(150% 150% at 90% 10%, rgba(255, 140, 105, 0.25) 0%, transparent 60%),
+        radial-gradient(100% 100% at 50% 80%, rgba(110, 220, 190, 0.25) 0%, transparent 60%),
+        url('../smeakotak.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: 0;
 }
 
@@ -60,6 +64,15 @@ body.app-body {
 @media (max-width: 768px) {
     .app-wrapper {
         padding: 18px;
+    }
+
+    .app-background {
+        background-image: linear-gradient(150deg, rgba(6, 14, 26, 0.62), rgba(15, 25, 40, 0.5)),
+            radial-gradient(120% 120% at 10% 20%, rgba(106, 165, 255, 0.4) 0%, transparent 55%),
+            radial-gradient(150% 150% at 90% 10%, rgba(255, 140, 105, 0.25) 0%, transparent 60%),
+            radial-gradient(100% 100% at 50% 80%, rgba(110, 220, 190, 0.2) 0%, transparent 60%),
+            url('../smeapotrai.jpeg');
+        background-position: center top;
     }
 }
 
@@ -1006,6 +1019,7 @@ select:focus {
     padding: 24px;
     box-shadow: var(--shadow-soft);
     backdrop-filter: blur(18px);
+    gap: 24px;
 }
 
 .header-left {
@@ -1017,16 +1031,45 @@ select:focus {
 .header-right {
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 .header-right form {
     margin: 0;
 }
 
+.header-right .ghost-button {
+    padding: 12px 24px;
+}
+
 .voter-main {
     display: flex;
     flex-direction: column;
     gap: 26px;
+}
+
+@media (max-width: 768px) {
+    .voter-header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+    }
+
+    .header-left {
+        justify-content: space-between;
+        gap: 18px;
+    }
+
+    .header-right {
+        width: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    .header-right .ghost-button {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 .token-banner {
@@ -1058,6 +1101,30 @@ select:focus {
     max-width: 460px;
     color: rgba(200, 210, 235, 0.85);
     line-height: 1.6;
+}
+
+.paslon-stage {
+    position: relative;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(140, 170, 225, 0.22);
+    padding: 32px;
+    background-image: linear-gradient(135deg, rgba(8, 13, 24, 0.88), rgba(16, 26, 42, 0.92)), url('../smeakotak.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+}
+
+.paslon-stage .empty-state {
+    margin: 0;
+    padding: 42px 16px;
+    color: rgba(230, 238, 255, 0.75);
+}
+
+.paslon-stage .paslon-grid {
+    position: relative;
+    z-index: 1;
 }
 
 .paslon-grid {
@@ -1096,6 +1163,31 @@ select:focus {
     display: flex;
     flex-direction: column;
     gap: 18px;
+}
+
+@media (max-width: 1024px) {
+    .paslon-stage {
+        padding: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .paslon-stage {
+        padding: 22px;
+        border-radius: var(--radius-md);
+        background-image: linear-gradient(150deg, rgba(6, 12, 22, 0.85), rgba(18, 24, 38, 0.9)), url('../smeapotrai.jpeg');
+        background-position: center top;
+    }
+
+    .paslon-stage .empty-state {
+        padding: 32px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .paslon-stage {
+        padding: 18px;
+    }
 }
 
 .card-body h3 {
