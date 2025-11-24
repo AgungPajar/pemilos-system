@@ -28,6 +28,7 @@ class AddLeaderAndDeputyNamesToPaslonsTable extends Migration
         if (Schema::hasColumn('paslons', 'leader_name') && Schema::hasColumn('paslons', 'deputy_name')) {
             DB::table('paslons')->select('id', 'name', 'leader_name', 'deputy_name')
                 ->whereNull('leader_name')
+                ->orderBy('id')
                 ->chunk(100, function ($paslons) {
                     foreach ($paslons as $paslon) {
                         [$leader, $deputy] = $this->splitName($paslon->name);
