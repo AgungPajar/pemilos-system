@@ -153,7 +153,11 @@
                             @endif
                         </td>
                         <td class="table-actions">
-                            <form action="{{ route('admin.pkl-students.destroy', $student) }}" method="POST" onsubmit="return confirm('Hapus data siswa PKL ini?')">
+                    <form action="{{ route('admin.pkl-students.destroy', $student) }}" method="POST"
+                        data-confirm="Hapus data siswa PKL ini?"
+                        data-confirm-title="Hapus Data"
+                        data-confirm-button="Ya, hapus"
+                        data-confirm-variant="danger">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="ghost-button danger">Hapus</button>
@@ -196,7 +200,11 @@
                         </div>
                     </div>
                     <div class="mobile-card-actions">
-                        <form action="{{ route('admin.pkl-students.destroy', $student) }}" method="POST" onsubmit="return confirm('Hapus data siswa PKL ini?')">
+                <form action="{{ route('admin.pkl-students.destroy', $student) }}" method="POST"
+                    data-confirm="Hapus data siswa PKL ini?"
+                    data-confirm-title="Hapus Data"
+                    data-confirm-button="Ya, hapus"
+                    data-confirm-variant="danger">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="ghost-button danger">Hapus</button>

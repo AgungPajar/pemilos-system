@@ -87,7 +87,11 @@
                             <td>{{ $token->created_at->format('d M Y') }}</td>
                             <td class="table-actions">
                                 @if (! $token->isUsed())
-                                    <form action="{{ route('admin.tokens.destroy', $token) }}" method="POST" onsubmit="return confirm('Hapus token ini?')">
+                        <form action="{{ route('admin.tokens.destroy', $token) }}" method="POST"
+                            data-confirm="Hapus token ini?"
+                            data-confirm-title="Hapus Token"
+                            data-confirm-button="Ya, hapus"
+                            data-confirm-variant="danger">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="ghost-button danger">Hapus</button>
@@ -126,7 +130,11 @@
                         </section>
                         <footer>
                             @if (! $token->isUsed())
-                                <form action="{{ route('admin.tokens.destroy', $token) }}" method="POST" onsubmit="return confirm('Hapus token ini?')">
+                      <form action="{{ route('admin.tokens.destroy', $token) }}" method="POST"
+                          data-confirm="Hapus token ini?"
+                          data-confirm-title="Hapus Token"
+                          data-confirm-button="Ya, hapus"
+                          data-confirm-variant="danger">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="ghost-button danger">Hapus</button>

@@ -44,7 +44,11 @@
                     <td><div class="text-block">{!! nl2br(e($paslon->program)) !!}</div></td>
                     <td class="table-actions">
                         <a href="{{ route('admin.paslon.edit', $paslon) }}" class="ghost-button">Edit</a>
-                        <form action="{{ route('admin.paslon.destroy', $paslon) }}" method="POST" onsubmit="return confirm('Hapus paslon ini?')">
+                <form action="{{ route('admin.paslon.destroy', $paslon) }}" method="POST"
+                    data-confirm="Hapus paslon ini?"
+                    data-confirm-title="Hapus Paslon"
+                    data-confirm-button="Ya, hapus"
+                    data-confirm-variant="danger">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="ghost-button danger">Hapus</button>
@@ -98,7 +102,11 @@
                 </div>
                 <div class="mobile-card-actions">
                     <a href="{{ route('admin.paslon.edit', $paslon) }}" class="ghost-button">Edit</a>
-                    <form action="{{ route('admin.paslon.destroy', $paslon) }}" method="POST" onsubmit="return confirm('Hapus paslon ini?')">
+              <form action="{{ route('admin.paslon.destroy', $paslon) }}" method="POST"
+                  data-confirm="Hapus paslon ini?"
+                  data-confirm-title="Hapus Paslon"
+                  data-confirm-button="Ya, hapus"
+                  data-confirm-variant="danger">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="ghost-button danger">Hapus</button>
