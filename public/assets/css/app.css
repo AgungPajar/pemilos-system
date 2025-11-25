@@ -1436,6 +1436,7 @@ select:focus {
     background: linear-gradient(145deg, rgba(12, 20, 38, 0.85), rgba(18, 28, 45, 0.95));
     border-color: rgba(106, 165, 255, 0.28);
     box-shadow: 0 16px 30px rgba(7, 12, 25, 0.35);
+    padding: 20px;
 }
 
 .section-content {
@@ -1511,6 +1512,15 @@ select:focus {
     gap: 10px;
     color: rgba(205, 215, 240, 0.9);
     font-size: 14px;
+}
+
+.mission-list li span:last-child {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.5;
 }
 
 .mission-index {
@@ -1617,6 +1627,11 @@ select:focus {
     line-height: 1.6;
     color: rgba(205, 215, 240, 0.85);
     font-size: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .card-actions {
@@ -1895,7 +1910,7 @@ select:focus {
 
     .paslon-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+        gap: 8px;
         padding: 0 8px;
     }
 

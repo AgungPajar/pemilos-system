@@ -99,23 +99,7 @@
                                 @endif
                             </div>
                         </div>
-                        @if (count($programPoints))
-                            <div class="card-section {{ $hasProgramOverflow ? 'expandable expandable-list' : '' }}"
-                                @if ($hasProgramOverflow) data-expandable data-expanded="false" data-expand-limit="programs" @endif>
-                                <p class="section-title">Program Unggulan</p>
-                                <div class="program-chips">
-                                    @foreach ($programPoints as $program)
-                                        <span class="program-chip">{{ trim($program) }}</span>
-                                    @endforeach
-                                </div>
-                                @if ($hasProgramOverflow)
-                                    <button type="button" class="section-toggle" data-expand-toggle
-                                        data-expand-more="Selengkapnya" data-expand-less="Sembunyikan">
-                                        Selengkapnya
-                                    </button>
-                                @endif
-                            </div>
-                        @endif
+                        {{-- Program unggulan hidden in main card, shown in detail modal only --}}
                         <div class="card-footer">
                             <button type="button" class="ghost-button" data-modal-trigger="modal-{{ $paslon->id }}">Detail paslon</button>
                             <form method="POST" action="{{ route('voter.vote') }}" class="vote-form"
