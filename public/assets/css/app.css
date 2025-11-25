@@ -1240,7 +1240,7 @@ select:focus {
 
 .paslon-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 24px;
 }
 
@@ -1342,6 +1342,13 @@ select:focus {
     align-self: flex-start;
     background: rgba(106, 165, 255, 0.2);
     color: #e2ecff;
+}
+
+.badge-media {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    left: auto;
 }
 
 .card-media {
@@ -1494,8 +1501,8 @@ select:focus {
 }
 
 .card-footer {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 12px;
     align-items: stretch;
 }

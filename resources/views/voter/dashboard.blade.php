@@ -31,35 +31,30 @@
                     $visionSnippet = \Illuminate\Support\Str::limit(strip_tags($paslon->vision ?? ''), 180);
                 @endphp
                 <article class="voter-card">
-                    <div class="card-head">
-                        <div class="card-head-primary">
-                            <div class="paslon-number">
-                                <span>No urut</span>
-                                <strong>{{ str_pad($paslon->order_number, 2, '0', STR_PAD_LEFT) }}</strong>
-                            </div>
-                            <div class="paslon-headline">
-                                <p class="paslon-label">Ketua &amp; Wakil OSIS</p>
-                                <h3>{{ $paslon->leader_name }}</h3>
-                                <p class="paslon-subtitle">Wakil: {{ $paslon->deputy_name ?? '-' }}</p>
-                            </div>
-                        </div>
-                        <div class="paslon-meta">
-                            <span class="badge badge-soft">Paslon {{ $paslon->order_number }}</span>
-                            <p class="paslon-meta-text">{{ count($missionPoints) }} misi &amp; {{ count($programPoints) }} program</p>
-                        </div>
-                    </div>
                     <div class="card-media">
                         @if ($paslon->image_path)
                             <img src="{{ asset($paslon->image_path) }}" alt="{{ $paslon->display_name }}">
                         @else
                             <div class="paslon-thumb placeholder">{{ $paslon->initials }}</div>
                         @endif
+                        <span class="badge badge-soft badge-media">Paslon {{ $paslon->order_number }}</span>
                         @if ($paslon->tagline)
                             <div class="media-overlay">
                                 <p class="media-label">Tagline</p>
-                                <p class="media-text">“{{ $paslon->tagline }}”</p>
+                                <p class="media-text">"{{ $paslon->tagline }}"</p>
                             </div>
                         @endif
+                    </div>
+                    <div class="card-head">
+                        <div class="card-head-primary">
+                            <div class="paslon-headline">
+                                <h3>{{ $paslon->leader_name }}</h3>
+                                <p class="paslon-subtitle">Wakil: {{ $paslon->deputy_name ?? '-' }}</p>
+                            </div>
+                        </div>
+                        <div class="paslon-meta">
+                            <p class="paslon-meta-text">{{ count($missionPoints) }} misi &amp; {{ count($programPoints) }} program</p>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="card-info-grid">
