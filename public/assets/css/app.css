@@ -45,6 +45,8 @@ body.app-body {
 
 body.app-body.modal-open {
     overflow: hidden;
+    position: fixed;
+    width: 100%;
 }
 
 .app-background {
@@ -1651,6 +1653,8 @@ select:focus {
     padding: 24px;
     z-index: 10;
     backdrop-filter: blur(6px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal.is-open {
@@ -1668,6 +1672,8 @@ select:focus {
     box-shadow: 0 25px 60px rgba(3, 8, 20, 0.55);
     max-height: calc(100vh - 48px);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: auto;
 }
 
 .modal-dialog-wide {
@@ -1960,6 +1966,22 @@ select:focus {
 
     .card-footer {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .modal {
+        padding: 0;
+        align-items: flex-start;
+    }
+
+    .modal-dialog {
+        max-height: 100vh;
+        border-radius: 0;
+        padding: 20px 16px;
+        margin: 0;
+    }
+
+    .modal-body {
+        max-height: calc(100vh - 200px);
     }
 
     .paslon-number {
