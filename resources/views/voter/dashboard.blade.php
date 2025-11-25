@@ -32,16 +32,21 @@
                 @endphp
                 <article class="voter-card">
                     <div class="card-head">
-                        <div class="paslon-number">
-                            <span>No urut</span>
-                            <strong>{{ str_pad($paslon->order_number, 2, '0', STR_PAD_LEFT) }}</strong>
+                        <div class="card-head-primary">
+                            <div class="paslon-number">
+                                <span>No urut</span>
+                                <strong>{{ str_pad($paslon->order_number, 2, '0', STR_PAD_LEFT) }}</strong>
+                            </div>
+                            <div class="paslon-headline">
+                                <p class="paslon-label">Ketua &amp; Wakil OSIS</p>
+                                <h3>{{ $paslon->leader_name }}</h3>
+                                <p class="paslon-subtitle">Wakil: {{ $paslon->deputy_name ?? '-' }}</p>
+                            </div>
                         </div>
-                        <div class="paslon-headline">
-                            <p class="paslon-label">Ketua &amp; Wakil</p>
-                            <h3>{{ $paslon->leader_name }}</h3>
-                            <p class="tagline small-tagline">Wakil: {{ $paslon->deputy_name ?? '-' }}</p>
+                        <div class="paslon-meta">
+                            <span class="badge badge-soft">Paslon {{ $paslon->order_number }}</span>
+                            <p class="paslon-meta-text">{{ count($missionPoints) }} misi &amp; {{ count($programPoints) }} program</p>
                         </div>
-                        <span class="badge badge-soft">Paslon {{ $paslon->order_number }}</span>
                     </div>
                     <div class="card-media">
                         @if ($paslon->image_path)
@@ -57,22 +62,24 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <div class="card-section">
-                            <p class="section-title">Visi</p>
-                            <p class="summary">{!! nl2br(e($visionSnippet)) !!}</p>
-                        </div>
-                        <div class="card-section">
-                            <p class="section-title">Sorotan Misi</p>
-                            <ul class="mission-list">
-                                @forelse ($missionPreview as $index => $point)
-                                    <li>
-                                        <span class="mission-index">{{ $index + 1 }}</span>
-                                        <span>{{ trim($point) }}</span>
-                                    </li>
-                                @empty
-                                    <li class="mission-empty">Belum ada misi yang dituliskan.</li>
-                                @endforelse
-                            </ul>
+                        <div class="card-info-grid">
+                            <div class="card-section card-section-accent">
+                                <p class="section-title">Visi</p>
+                                <p class="summary">{!! nl2br(e($visionSnippet)) !!}</p>
+                            </div>
+                            <div class="card-section card-section-accent">
+                                <p class="section-title">Sorotan Misi</p>
+                                <ul class="mission-list">
+                                    @forelse ($missionPreview as $index => $point)
+                                        <li>
+                                            <span class="mission-index">{{ $index + 1 }}</span>
+                                            <span>{{ trim($point) }}</span>
+                                        </li>
+                                    @empty
+                                        <li class="mission-empty">Belum ada misi yang dituliskan.</li>
+                                    @endforelse
+                                </ul>
+                            </div>
                         </div>
                         @if ($programPreview)
                             <div class="card-section">
@@ -86,10 +93,11 @@
                         @endif
                         <div class="card-footer">
                             <button type="button" class="ghost-button" data-modal-trigger="modal-{{ $paslon->id }}">Detail paslon</button>
-                            <form method="POST" action="{{ route('voter.vote') }}"
+                            <form method="POST" action="{{ route('voter.vote') }}" class="vote-form"
                                 data-confirm="Yakin memilih {{ $paslon->display_name }}?"
                                 data-confirm-title="Kirim Suara"
-                                data-confirm-button="Ya, pilih">
+                                data-confirm-button="Ya, pilih"
+                                data-confirm-variant="danger">
                                 @csrf
                                 <input type="hidden" name="paslon_id" value="{{ $paslon->id }}">
                                 <button type="submit" class="primary-button">Pilih Paslon</button>
@@ -136,10 +144,11 @@
                             </section>
                         </div>
                         <footer class="modal-footer">
-                            <form method="POST" action="{{ route('voter.vote') }}"
+                            <form method="POST" action="{{ route('voter.vote') }}" class="vote-form"
                                 data-confirm="Konfirmasi memilih {{ $paslon->display_name }}?"
                                 data-confirm-title="Kirim Suara"
-                                data-confirm-button="Kirim Pilihan">
+                                data-confirm-button="Kirim Pilihan"
+                                data-confirm-variant="danger">
                                 @csrf
                                 <input type="hidden" name="paslon_id" value="{{ $paslon->id }}">
                                 <button type="submit" class="primary-button">Konfirmasi Pilih</button>
