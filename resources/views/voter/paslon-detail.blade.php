@@ -19,35 +19,37 @@
                 $programPoints = array_values(array_filter(preg_split('/\r\n|\n|\r/', $paslon->program ?? '')));
             @endphp
 
-            <div class="detail-media">
-                @if ($paslon->image_path)
-                    <img src="{{ asset($paslon->image_path) }}" alt="{{ $paslon->display_name }}">
-                @else
-                    <div class="paslon-thumb placeholder">{{ $paslon->initials }}</div>
-                @endif
-            </div>
-
-            @if ($paslon->tagline)
-                <div class="detail-section">
-                    <h3>Tagline</h3>
-                    <p class="detail-tagline">"{{ $paslon->tagline }}"</p>
+            <div class="detail-grid">
+                <div class="detail-media">
+                    @if ($paslon->image_path)
+                        <img src="{{ asset($paslon->image_path) }}" alt="{{ $paslon->display_name }}">
+                    @else
+                        <div class="paslon-thumb placeholder">{{ $paslon->initials }}</div>
+                    @endif
                 </div>
-            @endif
 
-            <div class="detail-section">
-                <h3>Visi</h3>
-                @if ($paslon->vision)
-                    <p>{!! nl2br(e($paslon->vision)) !!}</p>
-                @else
-                    <p class="text-muted">Belum ada visi yang dituliskan.</p>
-                @endif
-            </div>
+                <div class="detail-content">
+                    @if ($paslon->tagline)
+                        <div class="detail-section">
+                            <h3>Tagline</h3>
+                            <p class="detail-tagline">"{{ $paslon->tagline }}"</p>
+                        </div>
+                    @endif
 
-            <div class="detail-section">
-                <h3>Misi</h3>
-                @if (count($missionPoints) > 0)
-                    <ul class="detail-list">
-                        @foreach ($missionPoints as $index => $point)
+                    <div class="detail-section">
+                        <h3>Visi</h3>
+                        @if ($paslon->vision)
+                            <p>{!! nl2br(e($paslon->vision)) !!}</p>
+                        @else
+                            <p class="text-muted">Belum ada visi yang dituliskan.</p>
+                        @endif
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Misi</h3>
+                        @if (count($missionPoints) > 0)
+                            <ul class="detail-list">
+                                @foreach ($missionPoints as $index => $point)
                             <li>
                                 <span class="mission-index">{{ $index + 1 }}</span>
                                 <span>{{ trim($point) }}</span>
@@ -57,22 +59,24 @@
                 @else
                     <p class="text-muted">Belum ada misi yang dituliskan.</p>
                 @endif
-            </div>
+                    </div>
 
-            <div class="detail-section">
-                <h3>Program Kerja</h3>
-                @if (count($programPoints) > 0)
-                    <ul class="detail-list">
-                        @foreach ($programPoints as $index => $point)
-                            <li>
-                                <span class="mission-index">{{ $index + 1 }}</span>
-                                <span>{{ trim($point) }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                @else
-                    <p class="text-muted">Belum ada program yang dituliskan.</p>
-                @endif
+                    <div class="detail-section">
+                        <h3>Program Kerja</h3>
+                        @if (count($programPoints) > 0)
+                            <ul class="detail-list">
+                                @foreach ($programPoints as $index => $point)
+                                    <li>
+                                        <span class="mission-index">{{ $index + 1 }}</span>
+                                        <span>{{ trim($point) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p class="text-muted">Belum ada program yang dituliskan.</p>
+                        @endif
+                    </div>
+                </div>
             </div>
 
             <div class="detail-actions">

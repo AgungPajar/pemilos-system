@@ -2208,6 +2208,19 @@ select:focus {
     padding: 20px 0;
 }
 
+.detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .detail-back-button {
     display: inline-flex;
     align-items: center;
@@ -2236,8 +2249,8 @@ select:focus {
 
 .detail-media {
     width: 100%;
-    max-width: 280px;
-    margin: 24px auto;
+    max-width: none;
+    margin: 0;
     aspect-ratio: 3 / 4;
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -2328,16 +2341,21 @@ select:focus {
         padding: 12px 16px;
     }
 
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .detail-media {
+        max-width: 200px;
+        margin: 0 auto;
+        border-radius: var(--radius-md);
+    }
+
     .detail-back-button {
         margin-bottom: 16px;
         padding: 8px 14px;
         font-size: 13px;
-    }
-
-    .detail-media {
-        max-width: 240px;
-        margin: 16px auto;
-        border-radius: var(--radius-md);
     }
 
     .detail-section {
