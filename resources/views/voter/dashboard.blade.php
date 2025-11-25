@@ -101,7 +101,7 @@
                         </div>
                         {{-- Program unggulan hidden in main card, shown in detail modal only --}}
                         <div class="card-footer">
-                            <button type="button" class="ghost-button" data-modal-trigger="modal-{{ $paslon->id }}">Detail paslon</button>
+                            <a href="{{ route('voter.paslon.detail', $paslon) }}" class="ghost-button" style="text-align: center;">Detail paslon</a>
                             <form method="POST" action="{{ route('voter.vote') }}" class="vote-form"
                                 data-confirm="Yakin memilih {{ $paslon->display_name }}?"
                                 data-confirm-title="Kirim Suara"

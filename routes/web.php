@@ -25,6 +25,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('token.auth')->group(function () {
     Route::get('/dashboard', VoterDashboardController::class)->name('voter.dashboard');
+    Route::get('/paslon/{paslon}', [\App\Http\Controllers\Voter\PaslonDetailController::class, 'show'])->name('voter.paslon.detail');
     Route::post('/vote', [VoteController::class, 'store'])->name('voter.vote');
 });
 
