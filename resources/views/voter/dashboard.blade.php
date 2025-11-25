@@ -26,9 +26,14 @@
                 @php
                     $missionPoints = array_values(array_filter(preg_split('/\r\n|\n|\r/', $paslon->mission ?? '')));
                     $programPoints = array_values(array_filter(preg_split('/\r\n|\n|\r/', $paslon->program ?? '')));
-                    $missionPreview = array_slice($missionPoints, 0, 3);
-                    $programPreview = array_slice($programPoints, 0, 3);
-                    $visionSnippet = \Illuminate\Support\Str::limit(strip_tags($paslon->vision ?? ''), 180);
+                    $missionLimit = 3;
+                    $programLimit = 3;
+                    $visionSource = $paslon->vision ?? '';
+                    $visionPlain = trim(strip_tags($visionSource));
+                    $visionSnippet = \Illuminate\Support\Str::limit($visionPlain, 180);
+                    $hasMissionOverflow = count($missionPoints) > $missionLimit;
+                    $hasProgramOverflow = count($programPoints) > $programLimit;
+                    $hasVisionOverflow = strlen($visionPlain) > strlen($visionSnippet);
                 @endphp
                 <article class="voter-card">
                     <div class="card-media">
@@ -53,14 +58,31 @@
                     </div>
                     <div class="card-body">
                         <div class="card-info-grid">
-                            <div class="card-section card-section-accent">
+                            <div class="card-section card-section-accent {{ $hasVisionOverflow ? 'expandable expandable-text' : '' }}"
+                                @if ($hasVisionOverflow) data-expandable data-expanded="false" @endif>
                                 <p class="section-title">Visi</p>
-                                <p class="summary">{!! nl2br(e($visionSnippet)) !!}</p>
+                                @if ($visionPlain !== '')
+                                    @if ($hasVisionOverflow)
+                                        <div class="section-content">
+                                            <p class="summary summary-collapsed">{!! nl2br(e($visionSnippet)) !!}</p>
+                                            <p class="summary summary-expanded">{!! nl2br(e($visionSource)) !!}</p>
+                                        </div>
+                                        <button type="button" class="section-toggle" data-expand-toggle
+                                            data-expand-more="Selengkapnya" data-expand-less="Sembunyikan">
+                                            Selengkapnya
+                                        </button>
+                                    @else
+                                        <p class="summary">{!! nl2br(e($visionSource)) !!}</p>
+                                    @endif
+                                @else
+                                    <p class="summary">Belum ada visi yang dituliskan.</p>
+                                @endif
                             </div>
-                            <div class="card-section card-section-accent">
+                            <div class="card-section card-section-accent {{ $hasMissionOverflow ? 'expandable expandable-list' : '' }}"
+                                @if ($hasMissionOverflow) data-expandable data-expanded="false" data-expand-limit="missions" @endif>
                                 <p class="section-title">Sorotan Misi</p>
                                 <ul class="mission-list">
-                                    @forelse ($missionPreview as $index => $point)
+                                    @forelse ($missionPoints as $index => $point)
                                         <li>
                                             <span class="mission-index">{{ $index + 1 }}</span>
                                             <span>{{ trim($point) }}</span>
@@ -69,16 +91,29 @@
                                         <li class="mission-empty">Belum ada misi yang dituliskan.</li>
                                     @endforelse
                                 </ul>
+                                @if ($hasMissionOverflow)
+                                    <button type="button" class="section-toggle" data-expand-toggle
+                                        data-expand-more="Selengkapnya" data-expand-less="Sembunyikan">
+                                        Selengkapnya
+                                    </button>
+                                @endif
                             </div>
                         </div>
-                        @if ($programPreview)
-                            <div class="card-section">
+                        @if (count($programPoints))
+                            <div class="card-section {{ $hasProgramOverflow ? 'expandable expandable-list' : '' }}"
+                                @if ($hasProgramOverflow) data-expandable data-expanded="false" data-expand-limit="programs" @endif>
                                 <p class="section-title">Program Unggulan</p>
                                 <div class="program-chips">
-                                    @foreach ($programPreview as $program)
+                                    @foreach ($programPoints as $program)
                                         <span class="program-chip">{{ trim($program) }}</span>
                                     @endforeach
                                 </div>
+                                @if ($hasProgramOverflow)
+                                    <button type="button" class="section-toggle" data-expand-toggle
+                                        data-expand-more="Selengkapnya" data-expand-less="Sembunyikan">
+                                        Selengkapnya
+                                    </button>
+                                @endif
                             </div>
                         @endif
                         <div class="card-footer">
@@ -156,12 +191,26 @@
 
 @push('scripts')
     <script>
+        var bodyEl = document.body;
+
+        function openModal(modal) {
+            modal.classList.add('is-open');
+            bodyEl.classList.add('modal-open');
+        }
+
+        function closeModal(modal) {
+            modal.classList.remove('is-open');
+            if (!document.querySelector('.modal.is-open')) {
+                bodyEl.classList.remove('modal-open');
+            }
+        }
+
         document.querySelectorAll('[data-modal-trigger]').forEach(function (button) {
             button.addEventListener('click', function () {
                 var id = this.getAttribute('data-modal-trigger');
                 var modal = document.getElementById(id);
                 if (modal) {
-                    modal.classList.add('is-open');
+                    openModal(modal);
                 }
             });
         });
@@ -170,7 +219,7 @@
             button.addEventListener('click', function () {
                 var modal = this.closest('.modal');
                 if (modal) {
-                    modal.classList.remove('is-open');
+                    closeModal(modal);
                 }
             });
         });
@@ -178,8 +227,23 @@
         document.querySelectorAll('.modal').forEach(function (modal) {
             modal.addEventListener('click', function (event) {
                 if (event.target === modal) {
-                    modal.classList.remove('is-open');
+                    closeModal(modal);
                 }
+            });
+        });
+
+        document.querySelectorAll('[data-expand-toggle]').forEach(function (button) {
+            var parent = button.closest('[data-expandable]');
+            if (!parent) {
+                return;
+            }
+            var moreLabel = button.getAttribute('data-expand-more') || 'Selengkapnya';
+            var lessLabel = button.getAttribute('data-expand-less') || 'Sembunyikan';
+            button.textContent = parent.getAttribute('data-expanded') === 'true' ? lessLabel : moreLabel;
+            button.addEventListener('click', function () {
+                var isExpanded = parent.getAttribute('data-expanded') === 'true';
+                parent.setAttribute('data-expanded', isExpanded ? 'false' : 'true');
+                button.textContent = isExpanded ? moreLabel : lessLabel;
             });
         });
     </script>

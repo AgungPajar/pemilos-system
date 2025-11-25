@@ -43,6 +43,10 @@ body.app-body {
     -webkit-font-smoothing: antialiased;
 }
 
+body.app-body.modal-open {
+    overflow: hidden;
+}
+
 .app-background {
     position: fixed;
     inset: 0;
@@ -1434,6 +1438,54 @@ select:focus {
     box-shadow: 0 16px 30px rgba(7, 12, 25, 0.35);
 }
 
+.section-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.section-toggle {
+    border: none;
+    background: none;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 4px;
+    align-self: flex-start;
+}
+
+.section-toggle:hover {
+    color: var(--accent-strong);
+}
+
+.summary-collapsed,
+.summary-expanded {
+    margin: 0;
+}
+
+.summary-expanded {
+    display: none;
+}
+
+.expandable-text[data-expanded="true"] .summary-collapsed {
+    display: none;
+}
+
+.expandable-text[data-expanded="true"] .summary-expanded {
+    display: block;
+}
+
+.expandable-text[data-expanded="false"] .summary-expanded {
+    display: none;
+}
+
+.expandable-list[data-expanded="false"][data-expand-limit="missions"] .mission-list li:nth-child(n + 4),
+.expandable-list[data-expanded="false"][data-expand-limit="programs"] .program-chips .program-chip:nth-child(n + 4) {
+    display: none;
+}
+
 .section-title {
     margin: 0;
     text-transform: uppercase;
@@ -1480,17 +1532,19 @@ select:focus {
 
 .program-chips {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 10px;
 }
 
 .program-chip {
     padding: 8px 16px;
-    border-radius: 999px;
+    border-radius: var(--radius-sm);
+    width: 100%;
     background: rgba(106, 165, 255, 0.12);
     border: 1px solid rgba(106, 165, 255, 0.25);
     font-size: 13px;
     color: #d5e2ff;
+    text-align: left;
 }
 
 .card-footer {
@@ -1597,6 +1651,8 @@ select:focus {
     padding: 28px 32px;
     position: relative;
     box-shadow: 0 25px 60px rgba(3, 8, 20, 0.55);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
 }
 
 .modal-dialog-wide {
