@@ -38,12 +38,7 @@
                             <div class="paslon-thumb placeholder">{{ $paslon->initials }}</div>
                         @endif
                         <span class="badge badge-soft badge-media">Paslon {{ $paslon->order_number }}</span>
-                        @if ($paslon->tagline)
-                            <div class="media-overlay">
-                                <p class="media-label">Tagline</p>
-                                <p class="media-text">"{{ $paslon->tagline }}"</p>
-                            </div>
-                        @endif
+                        {{-- tagline removed per request --}}
                     </div>
                     <div class="card-head">
                         <div class="card-head-primary">
