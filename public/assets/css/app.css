@@ -153,6 +153,13 @@ body.app-body.modal-open {
     font-size: 20px;
     color: var(--bg-dark);
     box-shadow: 0 12px 25px rgba(107, 165, 255, 0.35);
+    overflow: hidden;
+}
+
+.brand-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .brand-title {
@@ -248,10 +255,11 @@ body.app-body.modal-open {
 
 /* Auth layout */
 .auth-shell {
-    min-height: calc(100vh - 64px);
+    min-height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .auth-card {
@@ -1074,6 +1082,7 @@ select:focus {
     display: flex;
     flex-direction: column;
     gap: 28px;
+    min-height: 100vh;
 }
 
 .voter-header {
@@ -2385,5 +2394,68 @@ select:focus {
         flex-direction: column;
         margin-top: 16px;
         gap: 10px;
+    }
+}
+
+/* ============================
+   Footer Component Styles
+   ============================ */
+
+.app-footer {
+    margin-top: auto;
+    padding: 24px 0;
+    border-top: 1px solid var(--card-border);
+    background: var(--bg-muted);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-logo {
+    width: 60px;
+    height: auto;
+    opacity: 0.7;
+}
+
+.footer-text {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    text-align: center;
+}
+
+.footer-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .app-footer {
+        padding: 20px 0;
+    }
+
+    .footer-content {
+        gap: 10px;
+        padding: 0 16px;
+    }
+
+    .footer-logo {
+        width: 50px;
+    }
+
+    .footer-text {
+        font-size: 13px;
     }
 }

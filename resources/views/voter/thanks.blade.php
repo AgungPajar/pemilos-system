@@ -9,7 +9,10 @@
         <p>Suaramu untuk <strong>{{ $paslonName }}</strong> telah direkam dengan aman.</p>
         <p class="muted">Silakan kembali ke halaman login jika ingin membantu teman lain untuk memilih dengan token berbeda.</p>
         <a href="{{ route('voter.login') }}" class="primary-button mt">Kembali ke Login</a>
-        <a href="https://gncs.dev" target="_blank" rel="noopener noreferrer" class="primary-button mt">Lihat Tentang Kami</a>
-        <p class="muted mt">Created by GNCS x PPLG</p>
+
+        <div class="credits" style="margin-top: 32px; text-align: center;">
+            <p class="muted">Created by <a href="https://www.gncs.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">GnC Team</a></p>
+            <img src="{{ asset('logocreate.png') }}" alt="GnC Team Logo" style="width: 120px; height: auto; margin-top: 16px; opacity: 0.8;">
+        </div>
     </div>
 @endsection

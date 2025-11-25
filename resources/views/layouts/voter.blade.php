@@ -4,10 +4,12 @@
     <div class="voter-shell">
         <header class="voter-header">
             <div class="header-left">
-                <div class="brand-circle">P</div>
+                <div class="brand-circle">
+                    <img src="{{ asset('assets/smealogo.png') }}" alt="SME Logo">
+                </div>
                 <div>
-                    <h1 class="brand-title">Pemilos</h1>
-                    <p class="brand-subtitle">Satu suara menentukan masa depan OSIS</p>
+                    <h1 class="brand-title" style="text-align: center;">Pemilos</h1>
+                    <p class="brand-subtitle" style="text-align: center;">Satu suara menentukan masa depan</p>
                 </div>
             </div>
             <div class="header-right">
@@ -21,5 +23,6 @@
             @include('shared.flash')
             @yield('content')
         </main>
+        @include('shared.footer')
     </div>
 @endsection

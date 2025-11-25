@@ -29,12 +29,7 @@
                 </div>
 
                 <div class="detail-content">
-                    @if ($paslon->tagline)
-                        <div class="detail-section">
-                            <h3>Tagline</h3>
-                            <p class="detail-tagline">"{{ $paslon->tagline }}"</p>
-                        </div>
-                    @endif
+                    {{-- Tagline hidden in detail page --}}
 
                     <div class="detail-section">
                         <h3>Visi</h3>

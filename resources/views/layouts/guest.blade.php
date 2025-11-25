@@ -13,5 +13,6 @@
             @include('shared.flash')
             @yield('content')
         </div>
+        @include('shared.footer')
     </div>
 @endsection
