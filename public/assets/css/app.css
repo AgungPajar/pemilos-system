@@ -2236,7 +2236,7 @@ select:focus {
 
 .detail-media {
     width: 100%;
-    max-width: 400px;
+    max-width: 280px;
     margin: 24px auto;
     aspect-ratio: 3 / 4;
     border-radius: var(--radius-lg);
@@ -2325,7 +2325,7 @@ select:focus {
 
 @media (max-width: 640px) {
     .paslon-detail-container {
-        padding: 12px 0;
+        padding: 12px 16px;
     }
 
     .detail-back-button {
@@ -2335,7 +2335,7 @@ select:focus {
     }
 
     .detail-media {
-        max-width: 100%;
+        max-width: 240px;
         margin: 16px auto;
         border-radius: var(--radius-md);
     }
