@@ -17,7 +17,7 @@
                 <span class="sr-only">Tutup menu</span>
             </button>
             <div class="sidebar-head">
-                <img src="{{ asset('assets/smealogo.png') }}" alt="Logo SMK Negeri 1 Adiwerna" class="sidebar-logo">
+                <img src="{{ asset('assets/logobosdugar.png') }}" alt="Logo SMK Negeri 1 Adiwerna" class="sidebar-logo">
                 <div>
                     <h1 class="brand-title">Pemilos</h1>
                     <p class="brand-subtitle">Panel Admin</p>

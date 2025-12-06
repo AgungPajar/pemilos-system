@@ -5,7 +5,7 @@
         <header class="voter-header">
             <div class="header-left">
                 <div class="brand-circle">
-                    <img src="{{ asset('assets/smealogo.png') }}" alt="SME Logo">
+                    <img src="{{ asset('assets/logobosdugar.png') }}" alt="SME Logo">
                 </div>
                 <div>
                     <h1 class="brand-title" style="text-align: center;">Pemilos</h1>
