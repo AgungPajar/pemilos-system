@@ -22,5 +22,5 @@ class AdminSeeder extends Seeder
                 'password' => Hash::make('PemilosBosdugar2025!'),
             ]
         );
-    }
+    }                                   
 }

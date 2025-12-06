@@ -56,6 +56,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('tokens/summary', VoteSummaryController::class)->name('tokens.summary');
         Route::get('tokens/print', [AdminTokenController::class, 'print'])->name('tokens.print');
+        Route::get('tokens/print-pdf', [AdminTokenController::class, 'printPdf'])->name('tokens.printpdf');
         Route::resource('tokens', AdminTokenController::class)->only(['index', 'store', 'destroy']);
 
         Route::get('pkl-students/template', [PklStudentController::class, 'template'])->name('pkl-students.template');

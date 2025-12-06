@@ -115,6 +115,59 @@ class TokenController extends Controller
     }
 
     /**
+     * Stream tokens as an A4 PDF (suitable for printing/cutting).
+     *
+     * Tries to use barryvdh/laravel-dompdf if available, otherwise attempts
+     * to fall back to direct Dompdf usage. If no PDF generator exists,
+     * redirects back with an instruction to install the package.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function printPdf(Request $request)
+    {
+        $status = $request->query('status');
+
+        $tokensQuery = Token::with('paslon')->orderBy('code');
+
+        if ($status === 'used') {
+            $tokensQuery->whereNotNull('used_at');
+        } elseif ($status === 'unused') {
+            $tokensQuery->whereNull('used_at');
+        }
+
+        $tokens = $tokensQuery->get();
+
+        $data = [
+            'tokens' => $tokens,
+            'status' => $status,
+        ];
+
+        // Prefer the barryvdh PDF facade if available
+        if (class_exists(\Barryvdh\DomPDF\Facade::class) || class_exists('\PDF')) {
+            $pdf = \PDF::loadView('admin.tokens.pdf', $data)->setPaper('a4', 'portrait');
+            return $pdf->stream('tokens.pdf');
+        }
+
+        // Try direct Dompdf if installed via another mechanism
+        if (class_exists(\Dompdf\Dompdf::class)) {
+            $html = view('admin.tokens.pdf', $data)->render();
+            $dompdf = new \Dompdf\Dompdf(['isRemoteEnabled' => true]);
+            $dompdf->loadHtml($html);
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->render();
+            return response($dompdf->output(), 200, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline; filename="tokens.pdf"',
+            ]);
+        }
+
+        return redirect()->route('admin.tokens.index')->withErrors([
+            'general' => 'PDF generator tidak tersedia. Jalankan: composer require barryvdh/laravel-dompdf',
+        ]);
+    }
+
+    /**
      * Generate a unique alphanumeric token code.
      *
      * @return string

@@ -44,6 +44,7 @@
                 <div class="panel-actions">
                     <a href="{{ route('admin.tokens.summary') }}" class="ghost-button">Ringkasan</a>
                     <a href="{{ route('admin.tokens.print', ['status' => $status]) }}" class="ghost-button" target="_blank">Print</a>
+                    <a href="{{ route('admin.tokens.printpdf', ['status' => $status]) }}" class="ghost-button" target="_blank">Print Token</a>
                 </div>
             </header>
             <div class="filter-bar">
