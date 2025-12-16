@@ -11,8 +11,8 @@
         <a href="{{ route('voter.login') }}" class="primary-button mt">Kembali ke Login</a>
 
         <div class="credits" style="margin-top: 32px; text-align: center;">
-            <p class="muted">Created by <a href="https://www.gncs.dev/" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">GnC Team</a></p>
-            <img src="{{ asset('logocreate.png') }}" alt="GnC Team Logo" style="width: 120px; height: auto; margin-top: 16px; opacity: 0.8;">
+            <p class="muted">Website ini dibuat oleh <a href="https://www.instagram.com/jarss_pajar?igsh=YmJlcWhqc204Zzgw" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: none;">@jarss_pajar</a></p>
+            <p style="margin-top:10px;color:var(--text-muted);">Jangan lupa di follow yaa guyss</p>
         </div>
     </div>
 @endsection
