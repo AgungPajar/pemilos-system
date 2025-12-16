@@ -29,20 +29,25 @@ class PklLoginController extends Controller
     {
         $credentials = $request->validate([
             'nis' => ['required', 'string', 'max:100'],
-            'birth_date' => ['required', 'date'],
+            'password' => ['required', 'string'],
         ]);
 
+        // Check if password is correct
+        if ($credentials['password'] !== 'pemilosbosdugar25') {
+            return back()->withErrors([
+                'password' => 'Password tidak sesuai.',
+            ])->withInput();
+        }
+
         $nis = trim($credentials['nis']);
-        $birthDate = $credentials['birth_date'];
 
         $student = PklStudent::with('token')
             ->where('nis', $nis)
-            ->whereDate('tgl_lahir', $birthDate)
             ->first();
 
         if (! $student) {
             return back()->withErrors([
-                'nis' => 'Data tidak ditemukan. Pastikan NIS dan tanggal lahir sesuai.',
+                'nis' => 'NIS tidak ditemukan. Pastikan NIS sesuai.',
             ])->withInput();
         }
 

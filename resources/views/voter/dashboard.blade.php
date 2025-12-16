@@ -18,7 +18,6 @@
                 <p class="stage-eyebrow">Pemilihan Ketua &amp; Wakil OSIS</p>
                 <h2 class="stage-title">Kenali setiap paslon, pilih yang paling mewakili visi kamu</h2>
             </div>
-            <p class="stage-meta">{{ $paslons->count() }} paslon siap dipilih. Tekan “Detail” untuk membaca visi &amp; misi lengkap sebelum mengirim pilihan.</p>
         </header>
 
         <div class="paslon-grid">

@@ -16,6 +16,7 @@ class PklStudent extends Model
     protected $fillable = [
         'name',
         'nis',
+        'nisn',
         'jk',
         'tgl_lahir',
         'kelas',

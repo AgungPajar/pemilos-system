@@ -1,7 +1,7 @@
 @extends('layouts.guest')
 
 @section('title', 'Login PKL')
-@section('tagline', 'Masuk menggunakan NIS dan tanggal lahir')
+@section('tagline', 'Masuk menggunakan NIS dan password')
 
 @section('content')
     <form method="POST" action="{{ route('pkl.login.submit') }}" class="form-grid">
@@ -14,9 +14,9 @@
             @enderror
         </div>
         <div class="form-field">
-            <label for="birth_date">Tanggal Lahir</label>
-            <input type="date" id="birth_date" name="birth_date" value="{{ old('birth_date') }}" required>
-            @error('birth_date')
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+            @error('password')
                 <p class="field-error">{{ $message }}</p>
             @enderror
         </div>

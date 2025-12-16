@@ -53,14 +53,7 @@ body.app-body.modal-open {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    background-image: linear-gradient(140deg, rgba(9, 17, 31, 0.85), rgba(10, 24, 37, 0.7)),
-        radial-gradient(120% 120% at 10% 20%, rgba(106, 165, 255, 0.45) 0%, transparent 60%),
-        radial-gradient(150% 150% at 90% 10%, rgba(255, 140, 105, 0.3) 0%, transparent 60%),
-        radial-gradient(100% 100% at 50% 80%, rgba(110, 220, 190, 0.28) 0%, transparent 65%),
-        url('../smeakotak.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: transparent;
     z-index: 0;
     overflow: hidden;
 }
@@ -119,15 +112,6 @@ body.app-body.modal-open {
         padding: clamp(8px, 3vw, 12px);
     }
 
-    .app-background {
-        background-image: linear-gradient(150deg, rgba(6, 14, 26, 0.7), rgba(15, 25, 40, 0.62)),
-            radial-gradient(120% 120% at 15% 10%, rgba(106, 165, 255, 0.45) 0%, transparent 55%),
-            radial-gradient(150% 150% at 85% 10%, rgba(255, 140, 105, 0.3) 0%, transparent 60%),
-            radial-gradient(100% 100% at 45% 80%, rgba(110, 220, 190, 0.22) 0%, transparent 60%),
-            url('../smeapotrai.jpeg');
-        background-position: center top;
-    }
-
     .app-aurora {
         width: clamp(180px, 45vw, 320px);
         height: clamp(180px, 45vw, 320px);
@@ -145,14 +129,14 @@ body.app-body.modal-open {
     width: 44px;
     height: 44px;
     border-radius: 14px;
-    background: var(--accent);
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
     font-size: 20px;
     color: var(--bg-dark);
-    box-shadow: 0 12px 25px rgba(107, 165, 255, 0.35);
+    box-shadow: none;
     overflow: hidden;
 }
 
@@ -160,6 +144,12 @@ body.app-body.modal-open {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.brand-logos {
+    display: flex;
+    gap: 12px;
+    align-items: center;
 }
 
 .brand-title {
@@ -260,6 +250,7 @@ body.app-body.modal-open {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
 .auth-card {
@@ -1079,6 +1070,7 @@ select:focus {
 .voter-shell {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 24px 20px;
     display: flex;
     flex-direction: column;
     gap: 28px;
@@ -1087,7 +1079,8 @@ select:focus {
 
 .voter-header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     background: rgba(16, 25, 35, 0.85);
     border-radius: var(--radius-lg);
@@ -1095,13 +1088,59 @@ select:focus {
     padding: 24px;
     box-shadow: var(--shadow-soft);
     backdrop-filter: blur(18px);
-    gap: 24px;
+    gap: 16px;
 }
 
-.header-left {
+.header-logos {
     display: flex;
-    gap: 14px;
+    gap: 20px;
     align-items: center;
+    justify-content: center;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+}
+
+.header-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 640px) {
+    .voter-header {
+        padding: 20px;
+        gap: 12px;
+    }
+
+    .header-logos {
+        gap: 16px;
+    }
+
+    .header-logo {
+        width: 56px;
+        height: 56px;
+    }
+
+    .brand-title {
+        font-size: 18px;
+    }
+
+    .brand-subtitle {
+        font-size: 12px;
+    }
 }
 
 .header-right {
@@ -1195,16 +1234,15 @@ select:focus {
 }
 
 .paslon-stage {
+    /* Transparent stage so paslon cards sit flush with page background */
     position: relative;
-    border-radius: var(--radius-lg);
-    border: 1px solid rgba(140, 170, 225, 0.22);
-    padding: 32px;
-    background-image: linear-gradient(135deg, rgba(8, 13, 24, 0.88), rgba(16, 26, 42, 0.92)), url('../smeakotak.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: var(--shadow-soft);
-    overflow: hidden;
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    background: transparent;
+    box-shadow: none;
+    /* allow inner cards to overflow their visual rounded corners if needed */
+    overflow: visible;
 }
 
 .paslon-stage .empty-state {
@@ -1263,14 +1301,15 @@ select:focus {
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow-soft);
+    height: 100%;
 }
 
 .card-head {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 18px;
-    padding: 16px 16px 0;
+    gap: 12px;
+    padding: 14px 14px 0;
     flex-wrap: wrap;
 }
 
@@ -1421,33 +1460,35 @@ select:focus {
 }
 
 .card-body {
-    padding: 16px;
+    padding: 14px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
+    flex: 1;
 }
 
 .card-info-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
+    grid-template-columns: 1fr;
+    gap: 12px;
 }
 
 .card-section {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 16px;
+    gap: 6px;
+    padding: 12px;
     background: rgba(13, 22, 38, 0.75);
     border: 1px solid rgba(120, 150, 210, 0.15);
     border-radius: var(--radius-md);
+    font-size: 12px;
 }
 
 .card-section-accent {
     background: linear-gradient(145deg, rgba(12, 20, 38, 0.85), rgba(18, 28, 45, 0.95));
     border-color: rgba(106, 165, 255, 0.28);
     box-shadow: 0 16px 30px rgba(7, 12, 25, 0.35);
-    padding: 20px;
+    padding: 12px;
 }
 
 .section-content {
@@ -1512,26 +1553,23 @@ select:focus {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-height: 190px;
-    overflow-y: auto;
-    padding-right: 6px;
+    gap: 8px;
 }
 
 .mission-list li {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     color: rgba(205, 215, 240, 0.9);
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .mission-list li span:last-child {
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
 .mission-index {
@@ -1571,9 +1609,10 @@ select:focus {
 .card-footer {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
     align-items: stretch;
-    padding: 16px;
+    padding: 12px 14px 14px;
+    border-top: 1px solid rgba(120, 150, 210, 0.1);
 }
 
 .card-footer form {
@@ -1584,6 +1623,8 @@ select:focus {
 .card-footer .primary-button,
 .card-footer .ghost-button {
     width: 100%;
+    padding: 10px 12px;
+    font-size: 13px;
 }
 
 .vote-form {
@@ -1597,21 +1638,8 @@ select:focus {
 }
 
 @media (max-width: 768px) {
-    .paslon-stage {
-        padding: 22px;
-        border-radius: var(--radius-md);
-        background-image: linear-gradient(150deg, rgba(6, 12, 22, 0.85), rgba(18, 24, 38, 0.9)), url('../smeapotrai.jpeg');
-        background-position: center top;
-    }
-
     .paslon-stage .empty-state {
         padding: 32px 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    .paslon-stage {
-        padding: 18px;
     }
 }
 
@@ -1635,9 +1663,13 @@ select:focus {
 
 .summary {
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.4;
     color: rgba(205, 215, 240, 0.85);
-    font-size: 15px;
+    font-size: 13px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
@@ -1771,31 +1803,145 @@ select:focus {
 
 .confirm-modal {
     z-index: 25;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(8px);
+}
+
+.confirm-modal.is-open .modal-dialog {
+    animation: sweetAlertPopup 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes sweetAlertPopup {
+    0% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 .confirm-modal .modal-dialog {
-    max-width: 480px;
-    padding: 34px 32px 30px;
+    max-width: 420px;
+    padding: 0;
     text-align: center;
+    background: rgba(255, 255, 255, 0.98);
+    border: none;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+}
+
+.confirm-modal .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+    line-height: 1;
+    z-index: 1;
+    transition: all 0.2s;
+}
+
+.confirm-modal .modal-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+    color: #333;
 }
 
 .confirm-modal .modal-header {
     text-align: center;
+    margin-bottom: 0;
+    padding: 40px 32px 32px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(250, 250, 250, 0.95));
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.confirm-modal .modal-badge {
+    display: none;
+}
+
+.confirm-modal .modal-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    animation: iconPulse 0.5s ease;
+}
+
+@keyframes iconPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.confirm-modal .modal-header h3 {
+    font-size: 24px;
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: #2c3e50;
 }
 
 .confirm-modal .modal-meta {
-    font-size: 15px;
-    color: rgba(210, 222, 245, 0.9);
+    font-size: 16px;
+    color: #5a6c7d;
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 .confirm-modal .modal-footer {
     justify-content: center;
-    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 24px 32px 32px;
+    background: rgba(250, 250, 250, 0.95);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
 }
 
-.confirm-modal .ghost-button,
+.confirm-modal .ghost-button {
+    min-width: 120px;
+    flex: 1;
+    max-width: 150px;
+    background: #e8e8e8;
+    color: #5a5a5a;
+    border: none;
+    font-weight: 600;
+    padding: 13px 24px;
+    transition: all 0.2s;
+}
+
+.confirm-modal .ghost-button:hover {
+    background: #d8d8d8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .confirm-modal .primary-button {
-    min-width: 140px;
+    min-width: 120px;
+    flex: 1;
+    max-width: 150px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    font-weight: 600;
+    padding: 13px 24px;
+    transition: all 0.2s;
+}
+
+.confirm-modal .primary-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
 /* Guest thanks */
@@ -1925,8 +2071,8 @@ select:focus {
 
     .paslon-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-        padding: 0 8px;
+        gap: 16px;
+        padding: 0 12px;
     }
 
     .voter-card {
@@ -1942,13 +2088,14 @@ select:focus {
     .card-head {
         flex-direction: column;
         align-items: stretch;
-        gap: 14px;
+        gap: 8px;
+        padding: 12px 12px 0;
     }
 
     .card-head-primary {
         flex-direction: column;
         align-items: stretch;
-        gap: 12px;
+        gap: 8px;
     }
 
     .paslon-meta {
@@ -1964,17 +2111,19 @@ select:focus {
     }
 
     .card-body {
-        padding: 18px;
-        gap: 14px;
+        padding: 12px;
+        gap: 10px;
     }
 
     .card-info-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
     }
 
     .card-footer {
-        grid-template-columns: 1fr 1fr;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
     }
 
     .modal {
@@ -2402,10 +2551,10 @@ select:focus {
    ============================ */
 
 .app-footer {
-    margin-top: auto;
+    margin-top: 0;
     padding: 24px 0;
-    border-top: 1px solid var(--card-border);
-    background: var(--bg-muted);
+    border-top: none;
+    background: transparent;
 }
 
 .footer-content {
@@ -2413,7 +2562,7 @@ select:focus {
     flex-direction: column;
     align-items: center;
     gap: 12px;
-    max-width: 800px;
+    max-width: 420px;
     margin: 0 auto;
     padding: 0 20px;
 }
