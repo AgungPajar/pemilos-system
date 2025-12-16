@@ -1989,6 +1989,28 @@ select:focus {
     font-size: 14px;
 }
 
+/* Thanks page follow note styling */
+.credits .follow-note {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 15px; /* slightly larger */
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.credits .muted a {
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* Make the credits line more prominent */
+.credits .muted {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 0 0 6px 0;
+}
+
 /* Badge overlay */
 .badge-soft {
     position: absolute;
